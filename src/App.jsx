@@ -1,23 +1,27 @@
-
-import './App.css'
-import Navbar from './pages/Navbar'
-import SideDashboard from './pages/SideDashboard'
+// App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import { AuthProvider } from './context/AuthProvider/AuthProvider';
+import PrivateRoute from './components/PrivateRoutes/PrivateRoute';
 
 function App() {
-
   return (
-    <>
-     <div className='w-9/12 mx-auto'>
-       
-      <Navbar></Navbar>
-      <SideDashboard></SideDashboard>
-      
-     
-     </div>
-      
-      
-    </>
-  )
+   <AuthProvider>
+     <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={
+          <PrivateRoute>
+              <Dashboard />
+          </PrivateRoute>
+          } />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      </Router>
+   </AuthProvider>
+  );
 }
 
-export default App
+export default App;
