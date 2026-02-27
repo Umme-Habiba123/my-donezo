@@ -8,7 +8,7 @@ import { AuthProvider } from './context/AuthProvider/AuthProvider';
 
 function App() {
   return (
-   <AuthProvider>
+  
     <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -17,10 +17,10 @@ function App() {
               <Dashboard />
           </PrivateRoute>
           } />
-          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/" element={<Navigate to="/dashboard" />}  />
         </Routes>
       </Router>
-   </AuthProvider>
+ 
   );
 }
 
